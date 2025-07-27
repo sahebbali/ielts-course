@@ -48,13 +48,13 @@ const VideoGallery: React.FC<Props> = ({ media }) => {
           &#8594;
         </button>
       </div>
-      <div className="flex gap-2 mt-4 justify-center">
+      <div className="flex gap-1 mt-2 justify-center">
         {videos.map((video, idx) => (
           <img
             key={video.resource_value}
             src={video.thumbnail_url || DEFAULT_THUMBNAIL}
             alt={`Thumbnail ${idx + 1}`}
-            className={`w-16 h-10 object-cover rounded cursor-pointer border-2 ${
+            className={`w-13 h-8 object-cover rounded cursor-pointer border-2 ${
               idx === current ? "border-green-500" : "border-transparent"
             }`}
             onClick={() => selectVideo(idx)}

@@ -6,6 +6,7 @@ import Trailer from "./components/Trailer";
 import Checklist from "./components/Checklist";
 import CTA from "./components/CTA";
 import VideoGallery from "./components/VideoGallery";
+import FeaturesSection from "./components/FeaturesSection";
 
 async function fetchProductData(lang: string = "en") {
   const res = await fetch(
@@ -65,9 +66,9 @@ export default async function ProductPage() {
         )}
 
         {features.length > 0 && (
-          <SectionBlock
-            title="How the course is laid out"
-            sections={features}
+          <FeaturesSection
+            title={features[0].name}
+            features={features[0].values}
           />
         )}
 
@@ -80,7 +81,7 @@ export default async function ProductPage() {
         )}
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-6 border-l border-gray-200 pl-1">
         {trailer && <VideoGallery media={data.media} />}
         <CTA text={data.cta_text?.name || "Enroll Now"} />
         <Checklist items={data.checklist} />
