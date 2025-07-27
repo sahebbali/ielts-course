@@ -7,6 +7,7 @@ import Checklist from "./components/Checklist";
 import CTA from "./components/CTA";
 import VideoGallery from "./components/VideoGallery";
 import FeaturesSection from "./components/FeaturesSection";
+import InstructorsSection from "./components/InstructorsSection";
 
 async function fetchProductData(lang: string = "en") {
   const res = await fetch(
@@ -62,7 +63,10 @@ export default async function ProductPage() {
         />
 
         {instructors.length > 0 && (
-          <SectionBlock title="Instructors" sections={instructors} />
+          <InstructorsSection
+            title={instructors[0].name}
+            instructors={instructors[0].values}
+          />
         )}
 
         {features.length > 0 && (
