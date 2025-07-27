@@ -8,6 +8,8 @@ import CTA from "./components/CTA";
 import VideoGallery from "./components/VideoGallery";
 import FeaturesSection from "./components/FeaturesSection";
 import InstructorsSection from "./components/InstructorsSection";
+import GroupJoinEngagement from "./components/GroupJoinEngagement";
+import PointersSection from "./components/PointersSection";
 
 async function fetchProductData(lang: string = "en") {
   const res = await fetch(
@@ -75,13 +77,23 @@ export default async function ProductPage() {
             features={features[0].values}
           />
         )}
+        {data.sections
+          .filter((s: any) => s.type === "group_join_engagement")
+          .map((section: any) =>
+            section.values.map((value: any) => (
+              <GroupJoinEngagement key={value.id} value={value} />
+            ))
+          )}
 
         {pointers.length > 0 && (
-          <SectionBlock title="What you will learn" sections={pointers} />
+          <PointersSection
+            title={pointers[0].name}
+            pointers={pointers[0].values}
+          />
         )}
 
         {about.length > 0 && (
-          <SectionBlock title="Course Details" sections={about} />
+          <SectionBlock title={about[0].name} sections={about} />
         )}
       </div>
 
