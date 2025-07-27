@@ -10,6 +10,7 @@ import FeaturesSection from "./components/FeaturesSection";
 import InstructorsSection from "./components/InstructorsSection";
 import GroupJoinEngagement from "./components/GroupJoinEngagement";
 import PointersSection from "./components/PointersSection";
+import FeatureExplanationsSection from "./components/FeatureExplanationsSection";
 
 async function fetchProductData(lang: string = "en") {
   const res = await fetch(
@@ -52,6 +53,9 @@ export default async function ProductPage() {
   const features = data.sections.filter((s: any) => s.type === "features");
   const pointers = data.sections.filter((s: any) => s.type === "pointers");
   const about = data.sections.filter((s: any) => s.type === "about");
+  const featureExplanations = data.sections.filter(
+    (s: any) => s.type === "feature_explanations"
+  );
 
   // Correct media filtering
   const trailer = data.media.find((m: any) => m.resource_type === "video");
@@ -94,6 +98,13 @@ export default async function ProductPage() {
 
         {about.length > 0 && (
           <SectionBlock title={about[0].name} sections={about} />
+        )}
+
+        {featureExplanations.length > 0 && (
+          <FeatureExplanationsSection
+            title={featureExplanations[0].name}
+            features={featureExplanations[0].values}
+          />
         )}
       </div>
 
