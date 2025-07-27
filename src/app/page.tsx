@@ -48,7 +48,7 @@ export default async function ProductPage() {
   
   // Correct media filtering
   const trailer = data.media.find((m: any) => m.resource_type === "video");
-
+console.log("data.checklist:", data.checklist);
   return (
     <main className="p-4 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
       <div className="lg:col-span-2">
