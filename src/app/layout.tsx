@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Header from "./components/Header";
 
 export const metadata: Metadata = {
   title: "10 Minute School",
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Header />
         <div className="max-w-5xl mx-auto w-full">{children}</div>
       </body>
     </html>

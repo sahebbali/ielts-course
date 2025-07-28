@@ -26,9 +26,35 @@ async function fetchProductData(lang: string = "en") {
   return res.json();
 }
 
-export const metadata: Metadata = {
-  title: "IELTS Course | 10 Minute School",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const response = await fetchProductData();
+  const seo = response.data?.seo || {};
+
+  return {
+    title:
+      seo.title || "Best IELTS Preparation Course by Munzereen Shahid [2025]",
+    description: seo.description,
+    keywords: seo.keywords,
+    openGraph: {
+      title: seo.title,
+      description: seo.description,
+      images: [
+        {
+          url: "/10mslogo-svg.svg",
+          width: 120,
+          height: 40,
+          alt: "10 Minute School Logo",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seo.title,
+      description: seo.description,
+      images: ["/10mslogo-svg.svg"],
+    },
+  };
+}
 
 export default async function ProductPage() {
   const response = await fetchProductData();
@@ -59,7 +85,8 @@ export default async function ProductPage() {
 
   // Correct media filtering
   const trailer = data.media.find((m: any) => m.resource_type === "video");
-  console.log("data.checklist:", data.checklist);
+  // console.log("data.checklist:", data.checklist);
+  console.log("seo", data.seo);
   return (
     <main className="p-4 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
       <div className="lg:col-span-2">
