@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "10 Minute School",
   description: "Official website for 10 Minute School products",
 };
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

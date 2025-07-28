@@ -1,10 +1,29 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
 export default function Header() {
-  const [lang, setLang] = useState<"en" | "bn">("bn");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const isProductPage = pathname.startsWith("/product/");
+  const currentLang = isProductPage
+    ? pathname.split("/")[2] === "bn"
+      ? "bn"
+      : "en"
+    : "en";
+
+  const lang = searchParams.get("lang") === "bn" ? "bn" : "en";
+
+  const handleLangChange = () => {
+    const newLang = lang === "en" ? "bn" : "en";
+    const params = new URLSearchParams(Array.from(searchParams.entries()));
+    params.set("lang", newLang);
+    router.push(`/?${params.toString()}`);
+    // This will reload the page and trigger SSR with the new lang
+  };
 
   // Nav items for both languages
   const navItems =
@@ -86,12 +105,34 @@ export default function Header() {
 
       {/* Language Switcher, Phone, Login */}
       <div className="flex items-center gap-2 ml-2">
-        <button
-          onClick={() => setLang(lang === "en" ? "bn" : "en")}
-          className="border rounded px-2 py-1 text-xs font-semibold"
-        >
-          {lang === "en" ? "বাংলা" : "EN"}
-        </button>
+        {isProductPage ? (
+          <>
+            <Link
+              href={`/product/en`}
+              className={`border rounded px-2 py-1 text-xs font-semibold ${
+                currentLang === "en" ? "bg-gray-200" : ""
+              }`}
+            >
+              EN
+            </Link>
+            <Link
+              href={`/product/bn`}
+              className={`border rounded px-2 py-1 text-xs font-semibold ${
+                currentLang === "bn" ? "bg-gray-200" : ""
+              }`}
+            >
+              বাংলা
+            </Link>
+          </>
+        ) : (
+          // fallback for home page or others
+          <Link
+            href="/product/en"
+            className="border rounded px-2 py-1 text-xs font-semibold"
+          >
+            EN
+          </Link>
+        )}
         <span className="flex items-center text-green-600 font-bold ml-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
