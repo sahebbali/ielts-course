@@ -2,7 +2,6 @@ import React from "react";
 import { Metadata } from "next";
 import TitleAndDescription from "../../components/TitleAndDescription";
 import SectionBlock from "../../components/SectionBlock";
-
 import Checklist from "../../components/Checklist";
 import CTA from "../../components/CTA";
 import VideoGallery from "../../components/VideoGallery";
@@ -16,41 +15,58 @@ import { fetchProductData } from "../../services/productService";
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: "en" | "bn" };
+  params: { lang: string };
 }): Promise<Metadata> {
-  const response = await fetchProductData(params.lang);
-  const seo = response.data?.seo || {};
+  try {
+    const response = await fetchProductData(params.lang);
 
-  return {
-    title:
-      seo.title || "Best IELTS Preparation Course by Munzereen Shahid [2025]",
-    description: seo.description,
-    keywords: seo.keywords,
-    openGraph: {
-      title: seo.title,
-      description: seo.description,
-      images: [
-        {
-          url: "/10mslogo-svg.svg",
-          width: 120,
-          height: 40,
-          alt: "10 Minute School Logo",
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seo.title,
-      description: seo.description,
-      images: ["/10mslogo-svg.svg"],
-    },
-  };
+    if (!response.data?.seo) {
+      return {
+        title: "Best IELTS Preparation Course by Munzereen Shahid [2025]",
+        description:
+          "Comprehensive IELTS preparation course with expert guidance",
+      };
+    }
+
+    const seo = response.data.seo;
+
+    return {
+      title:
+        seo.title || "Best IELTS Preparation Course by Munzereen Shahid [2025]",
+      description: seo.description || "Comprehensive IELTS preparation course",
+      keywords: seo.keywords || "IELTS, English, Preparation, Course",
+      openGraph: {
+        title: seo.title || "Best IELTS Preparation Course",
+        description: seo.description || "IELTS preparation course",
+        url: `https://yourdomain.com/${params.lang}/product`,
+        images: [
+          {
+            url: seo.image || "/10mslogo-svg.svg",
+            width: 1200,
+            height: 630,
+            alt: seo.title || "IELTS Course",
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: seo.title || "Best IELTS Preparation Course",
+        description: seo.description || "IELTS preparation course",
+        images: [seo.image || "/10mslogo-svg.svg"],
+      },
+    };
+  } catch (error) {
+    return {
+      title: "Best IELTS Preparation Course",
+      description: "Comprehensive IELTS preparation course",
+    };
+  }
 }
 
 export default async function ProductPage({
   params,
 }: {
-  params: { lang: "en" | "bn" };
+  params: { lang: string };
 }) {
   const response = await fetchProductData(params.lang);
   const data = response.data; // Access the nested data property

@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Header from "./components/Header";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "10 Minute School",
@@ -28,8 +29,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
-        <div className="max-w-5xl mx-auto w-full">{children}</div>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Header />
+          <div className="max-w-5xl mx-auto w-full">{children}</div>
+        </Suspense>
       </body>
     </html>
   );

@@ -2,10 +2,10 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { useSearchParams, usePathname } from "next/navigation";
 
 export default function Header() {
-  const router = useRouter();
+  // const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const isProductPage = pathname.startsWith("/product/");
@@ -16,14 +16,6 @@ export default function Header() {
     : "en";
 
   const lang = searchParams.get("lang") === "bn" ? "bn" : "en";
-
-  const handleLangChange = () => {
-    const newLang = lang === "en" ? "bn" : "en";
-    const params = new URLSearchParams(Array.from(searchParams.entries()));
-    params.set("lang", newLang);
-    router.push(`/?${params.toString()}`);
-    // This will reload the page and trigger SSR with the new lang
-  };
 
   // Nav items for both languages
   const navItems =
