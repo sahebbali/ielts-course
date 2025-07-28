@@ -60,9 +60,10 @@ const GroupJoinEngagement: React.FC<Props> = ({ value }) => (
         rel="noopener noreferrer"
         className="inline-block px-5 py-2 rounded-lg font-semibold text-white"
         style={{
-          background:
-            value.cta.color ||
-            "linear-gradient(90deg, #16a34a 0%, #22d3ee 100%)",
+          color: value.cta.color || "#fff",
+          width: "fit-content",
+          textAlign: "center",
+          backgroundColor: value.cta.color || "#16a34a",
         }}
       >
         {value.cta.text}
@@ -72,7 +73,8 @@ const GroupJoinEngagement: React.FC<Props> = ({ value }) => (
       <img
         src={value.thumbnail}
         alt="PDF Preview"
-        className="w-48 h-32 object-cover rounded-lg shadow"
+        className="w-48 h-48 object-contain rounded-lg shadow p-2"
+        style={{ maxWidth: 192, maxHeight: 192 }}
       />
     </div>
   </div>

@@ -33,9 +33,20 @@ const VideoGallery: React.FC<Props> = ({ media }) => {
       <div className="relative flex justify-center items-center">
         <button
           onClick={handlePrev}
-          className="absolute left-0 z-10 bg-white bg-opacity-70 rounded-full px-2 py-1 shadow hover:bg-opacity-100"
+          className="absolute left-0 z-10 bg-white bg-opacity-70 rounded-full p-1 shadow hover:bg-opacity-100 flex items-center justify-center"
+          aria-label="Previous"
         >
-          &#8592;
+          {/* Left arrow SVG */}
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="12" cy="12" r="12" fill="#fff" fillOpacity="0.7" />
+            <path
+              d="M15 6l-6 6 6 6"
+              stroke="gray"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </button>
         <Trailer
           videoId={videos[current].resource_value}
@@ -43,9 +54,20 @@ const VideoGallery: React.FC<Props> = ({ media }) => {
         />
         <button
           onClick={handleNext}
-          className="absolute right-0 z-10 bg-white bg-opacity-70 rounded-full px-2 py-1 shadow hover:bg-opacity-100"
+          className="absolute right-0 z-10 bg-white bg-opacity-70 rounded-full p-1 shadow hover:bg-opacity-100 flex items-center justify-center"
+          aria-label="Next"
         >
-          &#8594;
+          {/* Right arrow SVG */}
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="12" fill="#fff" fillOpacity="0.7" />
+            <path
+              d="M9 6l6 6-6 6"
+              stroke="gray"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </button>
       </div>
       <div className="flex gap-1 mt-2 justify-center">

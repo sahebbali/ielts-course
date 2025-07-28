@@ -108,7 +108,7 @@ export default async function ProductPage() {
         )}
       </div>
 
-      <div className="space-y-6 border-l border-gray-200 pl-1">
+      <div className="border-2 border-gray-200 p-2 h-fit bg-white">
         {trailer && <VideoGallery media={data.media} />}
         <CTA text={data.cta_text?.name || "Enroll Now"} />
         <Checklist items={data.checklist} />

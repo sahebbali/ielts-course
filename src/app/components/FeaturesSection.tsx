@@ -15,20 +15,24 @@ interface Props {
 
 const FeaturesSection: React.FC<Props> = ({ title, features }) => (
   <section className="mb-8">
-    <h2 className="text-xl font-semibold mb-3">{title}</h2>
+    <h2 className="text-[18px] font-[500] leading-[26px] text-white mb-3">
+      {title}
+    </h2>
     <div className="bg-[#101828] rounded-xl p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
       {features.map((item) => (
         <div key={item.id} className="flex items-start gap-4">
           <img
             src={item.icon}
             alt={item.title}
-            className="w-10 h-10 rounded-full bg-white p-1 flex-shrink-0"
+            className="w-10 h-10 rounded-full flex-shrink-0"
           />
           <div>
-            <div className="text-white font-bold text-base mb-1">
+            <div className="text-[18px] font-[500] leading-[26px] text-white mb-1">
               {item.title}
             </div>
-            <div className="text-gray-200 text-sm">{item.subtitle}</div>
+            <div className="text-[14px] font-[400] leading-[22px] text-[#9CA3AF]">
+              {item.subtitle}
+            </div>
           </div>
         </div>
       ))}
