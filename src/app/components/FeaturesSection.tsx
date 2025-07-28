@@ -15,7 +15,7 @@ interface Props {
 
 const FeaturesSection: React.FC<Props> = ({ title, features }) => (
   <section className="mb-8">
-    <h2 className="text-[18px] font-[500] leading-[26px] text-white mb-3">
+    <h2 className="text-[24px] font-[600] leading-[35px] text-black mb-3">
       {title}
     </h2>
     <div className="bg-[#101828] rounded-xl p-6 grid grid-cols-1 md:grid-cols-2 gap-6">

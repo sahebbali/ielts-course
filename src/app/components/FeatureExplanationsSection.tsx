@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 
 interface FeatureExplanationItem {
   id: string;
@@ -48,10 +49,13 @@ const FeatureExplanationsSection: React.FC<Props> = ({ title, features }) => (
             </ul>
           </div>
           <div className="flex-shrink-0 md:ml-6">
-            <img
+            <Image
               src={item.file_url}
               alt={item.title}
-              className="w-48 h-36 object-cover rounded-lg shadow"
+              width={192} // 48 * 4 (tailwind w-48)
+              height={180} // 36 * 4 (tailwind h-36)
+              className="rounded-lg shadow object-cover"
+              // style={{ width: "192px", height: "170px" }}
             />
           </div>
         </div>

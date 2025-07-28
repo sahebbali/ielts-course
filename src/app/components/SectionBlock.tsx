@@ -42,7 +42,7 @@ const SectionBlock: React.FC<Props> = ({ title, sections }) => {
 
   return (
     <section className="mb-8">
-      <h2 className="text-[18px] font-bold mb-3">{title}</h2>
+      <h2 className="text-[24px] font-[600 font-bold mb-3">{title}</h2>
       <div className="bg-white border border-gray-200 rounded-xl p-4">
         {allValues.map((item, idx) => (
           <div

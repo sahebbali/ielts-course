@@ -15,7 +15,7 @@ interface Props {
 
 const PointersSection: React.FC<Props> = ({ title, pointers }) => (
   <section className="mb-8 mt-8">
-    <h2 className="text-[18px] font-[500] leading-[26px] text-[#101828] mb-3">
+    <h2 className="text-[24px] font-[600] leading-[35px] text-[#101828] mb-3">
       {title}
     </h2>
     <div className="bg-white border border-gray-200 rounded-xl p-6">

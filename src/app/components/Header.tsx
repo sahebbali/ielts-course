@@ -107,22 +107,21 @@ export default function Header() {
       <div className="flex items-center gap-2 ml-2">
         {isProductPage ? (
           <>
-            <Link
-              href={`/product/en`}
-              className={`border rounded px-2 py-1 text-xs font-semibold ${
-                currentLang === "en" ? "bg-gray-200" : ""
-              }`}
-            >
-              EN
-            </Link>
-            <Link
-              href={`/product/bn`}
-              className={`border rounded px-2 py-1 text-xs font-semibold ${
-                currentLang === "bn" ? "bg-gray-200" : ""
-              }`}
-            >
-              বাংলা
-            </Link>
+            {currentLang === "en" ? (
+              <Link
+                href={`/product/bn`}
+                className="border rounded px-2 py-1 text-xs font-semibold"
+              >
+                বাংলা
+              </Link>
+            ) : (
+              <Link
+                href={`/product/en`}
+                className="border rounded px-2 py-1 text-xs font-semibold"
+              >
+                EN
+              </Link>
+            )}
           </>
         ) : (
           // fallback for home page or others
@@ -151,7 +150,7 @@ export default function Header() {
           16910
         </span>
         <button className="bg-green-500 hover:bg-green-600 text-white font-semibold rounded px-4 py-2 ml-2">
-          {lang === "bn" ? "লগ-ইন" : "Login"}
+          {currentLang === "bn" ? "লগ-ইন" : "Login"}
         </button>
       </div>
     </header>
