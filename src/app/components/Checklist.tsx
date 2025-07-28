@@ -17,7 +17,7 @@ const Checklist: React.FC<Props> = ({ items }) => {
   if (!items || items.length === 0) return null;
   return (
     <div>
-      <h2 className="text-lg font-semibold mb-2">এই কোর্সে যা থাকছে</h2>
+      <h2 className="text-lg font-semibold mb-2 mt-4">এই কোর্সে যা থাকছে</h2>
       <ul className="space-y-2 pl-0">
         {items
           .filter((item) => item.list_page_visibility)

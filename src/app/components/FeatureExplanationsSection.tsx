@@ -55,7 +55,6 @@ const FeatureExplanationsSection: React.FC<Props> = ({ title, features }) => (
               width={192} // 48 * 4 (tailwind w-48)
               height={180} // 36 * 4 (tailwind h-36)
               className="rounded-lg shadow object-cover"
-              // style={{ width: "192px", height: "170px" }}
             />
           </div>
         </div>
